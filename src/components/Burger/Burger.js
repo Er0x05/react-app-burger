@@ -5,11 +5,17 @@ import classes from './Burger.module.css';
 
 const buger = (props) => {
 
-    const transIngredients = Object.keys(props.ingredients).map((ig)=>{
+    let transIngredients = Object.keys(props.ingredients).map((ig)=>{
         return [...Array(props.ingredients[ig])].map((_,index)=>{
             return <BurgerIngredient key={ig+index} type={ig} />
         })
-    })
+    }).reduce((acc,el)=>{
+        return acc.concat(el);
+    },[]);
+
+    if (transIngredients.length === 0) transIngredients = <p>Please start adding ingreindients.</p>;
+
+    console.log(transIngredients);
     
     return(
         <div className={classes.Burger}>
