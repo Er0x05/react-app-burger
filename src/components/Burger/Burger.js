@@ -14,8 +14,6 @@ const buger = (props) => {
     },[]);
 
     if (transIngredients.length === 0) transIngredients = <p>Please start adding ingreindients.</p>;
-
-    console.log(transIngredients);
     
     return(
         <div className={classes.Burger}>
