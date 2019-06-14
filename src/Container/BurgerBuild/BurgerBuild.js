@@ -23,7 +23,8 @@ class BurgerBuild extends React.Component {
             salad: 0
         },
         totalPrice: 4,
-        purchasable: false
+        purchasable: false,
+        purchaseOrder: false
     }
 
     updatePurchaseState = (ingredients) =>{
@@ -62,12 +63,16 @@ class BurgerBuild extends React.Component {
         this.updatePurchaseState(updatedIngredients);
     };
 
+    purchaseHandler = () => {
+        this.setState({purchaseOrder: true})
+    }
+
     render(){
         const disabledInfo = { ...this.state.ingredients };
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <=0;
         return(
             <Aux>
-                <Modal><OrderSummary ingredients={this.state.ingredients} /></Modal>
+                <Modal show={this.state.purchaseOrder}><OrderSummary ingredients={this.state.ingredients} /></Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BurgerControls 
                     ingredientAdded = {this.addIngredientHandler}
@@ -75,6 +80,7 @@ class BurgerBuild extends React.Component {
                     disabled = {disabledInfo}
                     purchasable = {this.state.purchasable}
                     price = {this.state.totalPrice}
+                    ordered= {this.purchaseHandler}
                 />
             </Aux>
         );
