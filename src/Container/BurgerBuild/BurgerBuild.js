@@ -3,6 +3,8 @@ import React from 'react';
 import Aux from '../../Hoc/AuxSupport';
 import Burger from '../../Components/Burger/Burger';
 import BurgerControls from '../../Components/Burger/BuildControls/BuildControls';
+import Modal from '../../Components/UI/Modal/Modal';
+import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -65,6 +67,7 @@ class BurgerBuild extends React.Component {
         for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <=0;
         return(
             <Aux>
+                <Modal><OrderSummary ingredients={this.state.ingredients} /></Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BurgerControls 
                     ingredientAdded = {this.addIngredientHandler}
