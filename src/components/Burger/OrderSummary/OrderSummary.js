@@ -4,7 +4,7 @@ import Aux from '../../../Hoc/AuxSupport';
 const orderSummary = (props) => {
 
     const ingredientSummary = Object.keys(props.ingredients)
-                                .map(el=><li key={el}><span>{el}:{props.ingredients[el]}</span></li>);
+                                .map(el=><li key={el}><span style={{textTransform: 'capitalize'}}>{el}:{props.ingredients[el]}</span></li>);
 
     return (
         <Aux>
